@@ -9,11 +9,11 @@ Screenshot:
 [![Sinescroller Screenshot](https://i.imgur.com/SzJy7JI.png "Sinescroller Screenshot")](https://i.imgur.com/SzJy7JI.png "Sinescroller Screenshot")
 
 ## Setting up
-All you need to edit is contained in the `include/config.hpp` file. It is recommended to use the tools provided in `tools` to modify the sine wave and bitmap (both are regular C++ programs) and leave the other values at their defaults.
+All you need to edit is contained in the `include/config.hpp` file. It is recommended to use the tools provided in [this repo](https://github.com/xNyaDev/arduino-ssd1306-sinescroller-tools) to modify the sine wave and bitmap (both are regular C++ programs) and leave the other values at their defaults.
 
 Depending on your display, you may need to change the screen address `kScreenAddress` in `include/config.hpp` - use the I2CScanner sketch to check for the correct address (You can get it for example on [Adafruit](https://learn.adafruit.com/scanning-i2c-addresses/arduino), it's also built-in to the default Arduino IDE). 
 
-If you're using anything different than a 128x64 I2C display, change the Adafruit_SSD1306 display constructor in `src/main.cpp` to reflect that.
+If you're using anything different than a 128x64 I2C display, change the Adafruit_SSD1306 display constructor in `include/config.hpp` to reflect that.
 
 ## Flashing with PlatformIO
 1. Select the appropriate board and upload.
