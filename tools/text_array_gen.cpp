@@ -1,3 +1,24 @@
+// MIT License
+//
+// Copyright (c) 2021 xNyaDev
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
 #include <iostream>
 #include <string>
 
@@ -8,7 +29,8 @@ using std::getline;
 using std::hex;
 using std::string;
 
-// Generated with http://javl.github.io/image2cpp/ - Vertical, 1 bit per pixel
+// This is the array which holds the character set.
+// Generated with http://javl.github.io/image2cpp/ - Vertical, 1 bit per pixel.
 const int kModifiedCommodore64Font[768] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x4f, 0x4f, 0x00, 0x00, 0x00,
@@ -111,12 +133,12 @@ int main(int argc, char *argv[])
 {
     string text;
 
-    if (argc == 1)
+    if (argc == 1) // Read the text from stdin if there was none provided as arguments.
     {
         cout << "Enter text to convert: ";
         getline(cin, text);
     }
-    else
+    else // Read the text from arguments if there were any provided. If multiple, join with a space between them.
     {
         for (int i = 1; i < argc; i++)
         {
@@ -128,13 +150,13 @@ int main(int argc, char *argv[])
         }
     }
 
-    cout << "const int kBitmapScrollLimit = " << (text.length() * 8) << ";" << endl
+    cout << "const int kBitmapScrollLimit = " << (text.length() * 8) << ";" << endl // Print out the variables and generate the array.
          << "const unsigned char kBitmapScrollArray[" << (text.length() * 8) << "] PROGMEM = {" << endl;
     cout << hex;
-    for (int i = 0; i < text.length(); i++)
+    for (int i = 0; i < text.length(); i++) // Loop through all characters.
     {
         cout << "    ";
-        int character_location = text.at(i) - ' ';
+        int character_location = text.at(i) - ' '; // Print out all the bytes for a given character.
         for (int j = 0; j < 8; j++)
         {
             cout << "0x";

@@ -1,16 +1,41 @@
+// MIT License
+//
+// Copyright (c) 2021 xNyaDev
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
 #ifndef _CONFIG_HPP
 #define _CONFIG_HPP
 #include <Arduino.h>
-const unsigned char kScreenAddress = 0x3D;
-const unsigned long kFrameTime = 60;
+const unsigned char kScreenAddress = 0x3D; // Screen I2C address.
+const int8_t kScreenWidth = 128; // Screen width in pixels.
+const int8_t kScreenHeight = 64; // Screen height in pixels.
+const int8_t kScreenResetPin = 4; // Screen RST pin - some screens do not have one, in that case leaving it as 4 is fine.
 
-const int kDYPPScrollSpeed = 3;
-// ./dypp_array_gen 200 27 28
+const unsigned long kFrameTime = 60; // Frame time in milliseconds. One draw took roughly 50ms on my Arduino, so 60ms is a safe value.
+
+const int kDYPPScrollSpeed = 3; // Scrolling speed of the DYPP (Sine wave) array, in pixels per frame. 
+// Generated with ./dypp_array_gen 200 27 28.
 const int kDYPPScrollLimit = 200;
 const unsigned char kDYPPScrollArray[200] PROGMEM = {28, 29, 30, 31, 31, 32, 33, 34, 35, 36, 36, 37, 38, 39, 39, 40, 41, 42, 42, 43, 44, 45, 45, 46, 46, 47, 48, 48, 49, 49, 50, 50, 51, 51, 52, 52, 52, 53, 53, 53, 54, 54, 54, 54, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 54, 54, 54, 54, 53, 53, 53, 52, 52, 52, 51, 51, 50, 50, 49, 49, 48, 48, 47, 46, 46, 45, 45, 44, 43, 42, 42, 41, 40, 39, 39, 38, 37, 36, 36, 35, 34, 33, 32, 31, 31, 30, 29, 28, 27, 26, 25, 25, 24, 23, 22, 21, 20, 20, 19, 18, 17, 17, 16, 15, 14, 14, 13, 12, 11, 11, 10, 10, 9, 8, 8, 7, 7, 6, 6, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 10, 10, 11, 11, 12, 13, 14, 14, 15, 16, 17, 17, 18, 19, 20, 20, 21, 22, 23, 24, 25, 25, 26, 27};
 
-const int kBitmapScrollSpeed = 2;
-// ./text_array_gen "                        Arduino SSD1306 Sinescroller by xNyaDev - source code: https://github.com/xNyaDev/arduino-ssd1306-sinescroller"
+const int kBitmapScrollSpeed = 2; // Scrolling speed of the bitmap (Text) array, in pixels per frame. This array scrolls in the opposite direction than the DYPP array.
+// Generated with ./text_array_gen "                        Arduino SSD1306 Sinescroller by xNyaDev - source code: https://github.com/xNyaDev/arduino-ssd1306-sinescroller".
 const int kBitmapScrollLimit = 1072;
 const unsigned char kBitmapScrollArray[1072] PROGMEM = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
